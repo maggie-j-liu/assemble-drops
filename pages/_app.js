@@ -1,7 +1,18 @@
-import '../styles/globals.css'
+import React from "react";
+import "../styles/globals.css";
+import { PlayersDataProvider } from "../context/PlayersDataContext";
+import LoadingScreen from "../components/LoadingScreen";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <FirebaseAuthProvider>
+      <PlayersDataProvider>
+        <LoadingScreen>
+          <Component {...pageProps} />
+        </LoadingScreen>
+      </PlayersDataProvider>
+    </FirebaseAuthProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

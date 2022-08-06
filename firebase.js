@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getMessaging } from "firebase/messaging";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB8jjt0Ocodx2m_1g19msPNf9xWGjwyVU0",
@@ -15,6 +16,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const firestore = getFirestore(app);
+export const auth = getAuth();
+/* 
 export const messaging = getMessaging(app);
 
 messaging.onMessage((payload) => {
@@ -118,3 +121,4 @@ function deleteToken() {
 }
 
 resetUI();
+ */

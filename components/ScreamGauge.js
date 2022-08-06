@@ -1,23 +1,31 @@
 import React from "react";
-let classNames = require("classnames");
+import classNames from "classnames";
 
 export default function ScreamGauge(props) {
+  let displayValue = (props.value - 40) * 0.75;
   return (
     <div
       className={classNames(
-        "flex h-96 w-1/2 flex-col items-center justify-center rounded-lg bg-gray-200 dark:bg-gray-700"
+        "flex h-64 w-full flex-col items-center justify-center rounded-lg bg-gray-200 dark:bg-gray-700 sm:w-1/2"
       )}
     >
       <div
-        className={classNames("transition-all duration-75", {
-          "bg-green-500 dark:bg-green-700": props.value > 80,
-          "bg-yellow-500 dark:bg-yellow-700":
-            props.value > 50 && props.value <= 80,
-          "bg-orange-500 dark:bg-orange-700":
-            props.value > 0 && props.value <= 50,
-        })}
-        style={{ height: Math.min(props.value, 100) + "%", width: "100%" }}
-      />
+        className={classNames(
+          "flex items-center justify-center transition-all duration-75",
+          {
+            "bg-green-500 dark:bg-green-700": displayValue > 60,
+            "bg-orange-500 dark:bg-orange-700":
+              displayValue > 40 && displayValue <= 60,
+            "bg-red-500 dark:bg-red-700":
+              displayValue > 0 && displayValue <= 40,
+          }
+        )}
+        style={{ height: Math.min(displayValue, 100) + "%", width: "100%" }}
+      >
+        <p className="animate-ping text-center text-3xl font-bold uppercase">
+          {displayValue > 60 ? "Keep It Up" : "Make Some Noise"}
+        </p>
+      </div>
     </div>
   );
 }
