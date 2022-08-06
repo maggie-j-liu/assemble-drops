@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AppShell from "../components/AppShell";
 import ScreamGauge from "../components/ScreamGauge";
-import { messaging } from "../firebase";
+import { messaging, requestPermission } from "../firebase";
 import { getToken } from "firebase/messaging";
 
 export default function Home() {
@@ -42,21 +42,11 @@ export default function Home() {
     };
     getAudio();
   }, []);
-  const requestNotifPermissions = async () => {
-    const permission = await Notification.requestPermission();
-    console.log(permission);
-    const messaging = getMessaging();
-    const token = await getToken(messaging, {
-      vapidKey:
-        "BGFq2XnE8yUuexm2FNbxj5WmUHZ6lOwaDmk-qVWy_9ZIQCufIE7VPTT3KN1T2pdZ74Sz4iY2bNeOzi_gJ3g0Txo",
-    });
-    console.log(token);
-  };
+
   return audioLevel !== undefined ? (
     <AppShell>
       <ScreamGauge value={audioLevel} />
       Audio level: {audioLevel}
-      <button onClick={() => requestNotifPermissions()}>Get token</button>
     </AppShell>
   ) : null;
 }

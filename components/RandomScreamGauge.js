@@ -6,7 +6,7 @@ export default function RandomScreamGauge() {
   const [value, setValue] = useState(Math.random() * 100);
 
   useEffect(() => {
-    const interval = setInterval(() => setValue(Math.random() * 100), 1000);
+    const interval = setInterval(() => setValue(Math.random() * 100), 100);
     return () => {
       clearInterval(interval);
     };
