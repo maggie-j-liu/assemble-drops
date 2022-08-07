@@ -21,10 +21,12 @@ export default function LoadingScreen({ children }) {
   if (!eventAvailable) {
     return (
       <AppShell>
-        <h1>
-          The event is not yet available, but stick around—this page should
-          reload once it's ready.
-        </h1>
+        <div className="mt-40 p-4">
+          <h1>
+            The event is not yet available, but stick around—this page should
+            reload once it&apos;s ready.
+          </h1>
+        </div>
       </AppShell>
     );
   }

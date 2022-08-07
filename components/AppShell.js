@@ -32,7 +32,7 @@ export default function AppShell(props) {
 
         <main className="-mt-32">
           <div className="mx-auto max-w-7xl pb-12 sm:px-6 lg:px-8">
-            <div className="h-fit bg-white sm:px-6 sm:py-6 shadow rounded-md">
+            <div className="h-fit bg-white sm:px-6 sm:py-6 sm:shadow rounded-md">
               {props.children}
             </div>
           </div>
