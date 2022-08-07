@@ -14,12 +14,14 @@ export function FirebaseAuthProvider({ children }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [available, setAvailable] = useState(false);
+  const [availableLoading, setAvailableLoading] = useState(true);
 
   useEffect(() => {
     const auth = getAuth();
 
     onSnapshot(doc(firestore, "events", "makesomenoise"), (doc) => {
       setAvailable(doc.data().available);
+      setAvailableLoading(false);
     });
 
     onAuthStateChanged(auth, (user) => {
@@ -40,9 +42,12 @@ export function FirebaseAuthProvider({ children }) {
 
   return (
     <FirebaseAuthContext.Provider
-      value={useMemo(() => ({ user, loading }), [user, loading])}
+      value={useMemo(
+        () => ({ user, loading: loading || availableLoading }),
+        [user, loading, availableLoading]
+      )}
     >
-      {available ? (
+      {availableLoading || available ? (
         children
       ) : (
         <AppShell>
