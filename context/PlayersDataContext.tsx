@@ -22,7 +22,7 @@ export const PlayersDataProvider = ({ children }) => {
       (snapshot) => {
         setLoading(false);
         setError(null);
-        const players: Player[] = Object.values(snapshot.val());
+        const players: Player[] = Object.values(snapshot.val() ?? {});
         setPlayers(players);
       },
       (error) => {
@@ -61,9 +61,12 @@ export const PlayersDataProvider = ({ children }) => {
 
 const usePlayersDataContext = () => {
   const context = useContext(PlayersDataContext);
-  if (!context) throw new Error("usePlayersDataContext() must be called within a PlayersDataProvider");
+  if (!context)
+    throw new Error(
+      "usePlayersDataContext() must be called within a PlayersDataProvider"
+    );
   return context;
-}
+};
 
 export const usePlayersDataLoadStatus = () => {
   const { loading, error } = usePlayersDataContext();
@@ -72,8 +75,14 @@ export const usePlayersDataLoadStatus = () => {
 
 export const usePlayersData = () => {
   const { hasLoadedSuccessfully } = usePlayersDataLoadStatus();
-  if (!hasLoadedSuccessfully) throw new Error("usePlayersData() was called when the player data hasn't been loaded successfully yet");
+  if (!hasLoadedSuccessfully)
+    throw new Error(
+      "usePlayersData() was called when the player data hasn't been loaded successfully yet"
+    );
   const { players } = usePlayersDataContext();
-  if (!players) throw new Error("players data is null but it shouldn't be null... maybe firestore just got wiped?");
+  if (!players)
+    throw new Error(
+      "players data is null but it shouldn't be null... maybe firestore just got wiped?"
+    );
   return players;
-}
+};
