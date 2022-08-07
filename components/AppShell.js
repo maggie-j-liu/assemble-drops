@@ -40,7 +40,7 @@ export default function AppShell(props) {
         <footer>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <p>
-              ❤️ from Team Drops
+              With ❤️ and 🧋 from Team Drops
             </p>
             </div>
         </footer>
