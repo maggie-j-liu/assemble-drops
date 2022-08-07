@@ -14,7 +14,7 @@ export default function Leaderboard() {
   const maxScore = sortedPeople[0].noiseScore;
 
   return (
-    <div className="w-full sm:w-1/2">
+    <div className="w-full sm:flex-1">
       <h1 className="text-center text-3xl font-bold mb-4">Leaderboard</h1>
       <ul role="list" className="">
         {sortedPeople.map((person) => (
