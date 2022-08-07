@@ -5,10 +5,9 @@ import { getDoc, onSnapshot, doc } from "firebase/firestore";
 import { firestore } from "../firebase";
 import AppShell from "../components/AppShell";
 
-const FirebaseAuthContext = createContext<{
-  user: User;
-  loading: boolean;
-} | null>(null);
+const FirebaseAuthContext = createContext<{ user: User, loading: boolean } | null>(
+  null
+);
 
 export function FirebaseAuthProvider({ children }) {
   const [user, setUser] = useState<User | null>(null);
