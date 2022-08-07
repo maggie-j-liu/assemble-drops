@@ -14,7 +14,7 @@ export default function Leaderboard() {
   const maxScore = sortedPeople.length > 0 ? sortedPeople[0].noiseScore : 0;
 
   return (
-    <div className="w-full sm:w-1/2">
+    <div className="w-full sm:flex-1">
       <h1 className="text-center text-3xl font-bold mb-4">Leaderboard</h1>
       <ul role="list" className="">
         {(yourPlace <= 5 ? sortedPeople.slice(0, 5) : [...sortedPeople.slice(0, 4), sortedPeople[yourPlace - 1]]).map((person) => (
