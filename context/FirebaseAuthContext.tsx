@@ -5,9 +5,11 @@ import { getDoc, onSnapshot, doc } from "firebase/firestore";
 import { firestore } from "../firebase";
 import AppShell from "../components/AppShell";
 
-const FirebaseAuthContext = createContext<{ user: User, loading: boolean } | null>(
-  null
-);
+const FirebaseAuthContext = createContext<{
+  user: User;
+  loading: boolean;
+  eventAvailable: boolean;
+} | null>(null);
 
 export function FirebaseAuthProvider({ children }) {
   const [user, setUser] = useState<User | null>(null);
@@ -39,23 +41,20 @@ export function FirebaseAuthProvider({ children }) {
     });
   }, []);
 
+  console.log(user);
+
   return (
     <FirebaseAuthContext.Provider
       value={useMemo(
-        () => ({ user, loading: loading || availableLoading }),
-        [user, loading, availableLoading]
+        () => ({
+          user,
+          loading: loading || availableLoading,
+          eventAvailable: available,
+        }),
+        [user, loading, availableLoading, available]
       )}
     >
-      {availableLoading || available ? (
-        children
-      ) : (
-        <AppShell>
-          <h1>
-            The event is not yet available, but stick around—this page should
-            reload once it's ready.
-          </h1>
-        </AppShell>
-      )}
+      {children}
     </FirebaseAuthContext.Provider>
   );
 }

@@ -30,5 +30,5 @@ export default function LoginScreen() {
 
   useEffect(() => handleLogin(), []);
 
-  return "Loading...";
+  return <div>Loading...</div>;
 }
