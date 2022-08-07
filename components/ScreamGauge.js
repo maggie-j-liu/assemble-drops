@@ -6,7 +6,7 @@ export default function ScreamGauge({ value }) {
   return (
     <div
       className={
-        "flex h-screen sm:h-64 w-full flex-col items-center justify-center sm:rounded-lg bg-gray-200 dark:bg-gray-700 sm:w-1/2"
+        "flex h-screen sm:h-64 w-full flex-col items-center justify-center sm:rounded-lg bg-gray-200 dark:bg-gray-700 sm:w-1/2 overflow-hidden"
       }
     >
       <div
