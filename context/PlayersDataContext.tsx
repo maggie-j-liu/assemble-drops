@@ -1,7 +1,8 @@
 import React from "react";
 import { onSnapshot, collection } from "firebase/firestore";
+import { onValue, ref } from "firebase/database";
 import { createContext, useEffect, useState, useMemo, useContext } from "react";
-import { firestore } from "../firebase";
+import { firestore, db } from "../firebase";
 import type { Player } from "../types/Player";
 
 const PlayersDataContext = createContext<{
@@ -16,13 +17,12 @@ export const PlayersDataProvider = ({ children }) => {
   const [players, setPlayers] = useState<Player[] | null>(null);
 
   useEffect(() => {
-    return onSnapshot(
-      collection(firestore, "players"),
-      (querySnapshot) => {
+    return onValue(
+      ref(db, "players"),
+      (snapshot) => {
         setLoading(false);
         setError(null);
-        const players: Player[] = [];
-        querySnapshot.forEach((doc) => players.push(doc.data() as Player));
+        const players: Player[] = Object.values(snapshot.val());
         setPlayers(players);
       },
       (error) => {
@@ -30,6 +30,21 @@ export const PlayersDataProvider = ({ children }) => {
         setError(error);
       }
     );
+    // old code for firest
+    // return onSnapshot(
+    //   collection(firestore, "players"),
+    //   (querySnapshot) => {
+    //     setLoading(false);
+    //     setError(null);
+    //     const players: Player[] = [];
+    //     querySnapshot.forEach((doc) => players.push(doc.data() as Player));
+    //     setPlayers(players);
+    //   },
+    //   (error) => {
+    //     setLoading(false);
+    //     setError(error);
+    //   }
+    // );
   }, []);
 
   return (

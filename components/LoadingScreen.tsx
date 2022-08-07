@@ -1,14 +1,15 @@
 import React from "react";
-import { useFirebaseUser } from "../context/FirebaseAuthContext";
+import { useFirebaseAuthContext } from "../context/FirebaseAuthContext";
 import { usePlayersDataLoadStatus } from "../context/PlayersDataContext";
+import AppShell from "./AppShell";
 import LoginScreen from "./LoginScreen";
 
 export default function LoadingScreen({ children }) {
   const { loading, error } = usePlayersDataLoadStatus();
-  const { loading: authLoading, user } = useFirebaseUser();
+  const { loading: authLoading, user } = useFirebaseAuthContext();
 
   if (loading || authLoading) {
-    return <div>Loading... todo</div>;
+    return <AppShell>Loading...</AppShell>;
   }
   if (!user) {
     return <LoginScreen />;
@@ -16,5 +17,5 @@ export default function LoadingScreen({ children }) {
   if (error) {
     return <div>Error: {"" + error}</div>;
   }
-  return user;
+  return children;
 }

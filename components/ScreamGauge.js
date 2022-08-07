@@ -1,22 +1,22 @@
 import React from "react";
 import classNames from "classnames";
 
-export default function ScreamGauge(props) {
-  let displayValue = (props.value - 40) * 0.75;
+export default function ScreamGauge({ value }) {
+  let displayValue = (value - 40) * 0.75;
   return (
     <div
-      className={classNames(
-        "flex h-64 w-full flex-col items-center justify-center rounded-lg bg-gray-200 dark:bg-gray-700 sm:w-1/2"
-      )}
+      className={
+        "flex h-screen sm:h-64 w-full flex-col items-center justify-center sm:rounded-lg bg-gray-200 dark:bg-gray-700 sm:w-1/2"
+      }
     >
       <div
         className={classNames(
-          "flex items-center justify-center transition-all duration-75",
+          "flex items-center justify-center",
           {
-            "bg-green-500 dark:bg-green-700": displayValue > 60,
-            "bg-orange-500 dark:bg-orange-700":
+            "bg-green-500": displayValue > 60,
+            "bg-orange-500":
               displayValue > 40 && displayValue <= 60,
-            "bg-red-500 dark:bg-red-700":
+            "bg-red-500":
               displayValue > 0 && displayValue <= 40,
           }
         )}

@@ -27,7 +27,7 @@ export default function LoginScreen() {
   };
   return (
     <div>
-      <button onClick={handleLogin}>Login</button>
+      <button type="button" onClick={handleLogin}>Login</button>
     </div>
   );
 }
