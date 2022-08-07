@@ -11,7 +11,7 @@ export default function Leaderboard() {
   const yourPlace = people.findIndex(
     (p) => p.uid === auth.currentUser.uid
   ) + 1;
-  const maxScore = sortedPeople[0].noiseScore;
+  const maxScore = sortedPeople.length > 0 ? sortedPeople[0].noiseScore : 0;
 
   return (
     <div className="w-full sm:w-1/2">

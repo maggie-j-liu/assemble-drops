@@ -79,7 +79,7 @@ export default function Home() {
   }, [audioSum, audioDatapoints]);
 
   return audioLevel !== undefined ? (
-    <AppShell title="Assemble Drops">
+    <AppShell title="Assemble Special Event">
       <div className="flex flex-col sm:flex-row gap-8">
         <ScreamGauge value={audioLevel} />
         <Leaderboard />

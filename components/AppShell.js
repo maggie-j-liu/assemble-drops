@@ -24,7 +24,7 @@ export default function AppShell(props) {
         <div className="bg-gray-800 pb-32">
           <header className="absolute sm:static top-4 left-4 sm:py-10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold text-white">{props.title || "Assemble Drops"}</h1>
+              <h1 className="text-3xl font-bold text-white">{props.title || "Team Drops"}</h1>
               <h2 className="text-xl text-neutral-200">Ends <ReactTimeAgo date={'2022-08-06T20:35:00'} locale="en-US" timeStyle="round" /></h2>
             </div>
           </header>
@@ -37,6 +37,13 @@ export default function AppShell(props) {
             </div>
           </div>
         </main>
+        <footer>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p>
+              ❤️ from Team Drops
+            </p>
+            </div>
+        </footer>
       </div>
     </>
   );
