@@ -17,7 +17,7 @@ export default function Leaderboard() {
     <div className="w-full sm:flex-1">
       <h1 className="text-center text-3xl font-bold mb-4">Leaderboard</h1>
       <ul role="list" className="">
-        {sortedPeople.map((person) => (
+        {(yourPlace <= 5 ? sortedPeople.slice(0, 5) : [...sortedPeople.slice(0, 4), sortedPeople[yourPlace - 1]]).map((person) => (
           <li key={person.uid} className="p-4 relative">
             <div className="absolute inset-y-0 left-0 bg-blue-200" style={{ width: `${person.noiseScore/maxScore*100}%` }} />
             <div className="flex space-x-3 relative">
