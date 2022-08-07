@@ -9,11 +9,6 @@ import { firestore, auth, db } from "../firebase.js";
 import { doc, set, ref, increment } from "firebase/database";
 import { get } from "http";
 import Countdown from "react-countdown";
-import TimeAgo from 'javascript-time-ago'
-
-import en from 'javascript-time-ago/locale/en.json'
-
-TimeAgo.addDefaultLocale(en)
 
 export default function Home() {
   const [stream, setStream] = useState(null);
