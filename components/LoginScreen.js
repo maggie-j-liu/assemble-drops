@@ -1,11 +1,13 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
+import { useEffect } from "react";
+import AppShell from "./AppShell";
 
 export default function LoginScreen() {
   const handleLogin = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -25,9 +27,8 @@ export default function LoginScreen() {
         // ...
       });
   };
-  return (
-    <div>
-      <button type="button" onClick={handleLogin}>Login</button>
-    </div>
-  );
+
+  useEffect(() => handleLogin(), []);
+
+  return "Loading...";
 }
